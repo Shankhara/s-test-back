@@ -1,0 +1,142 @@
+openapi: 3.0.1
+info:
+  version: v1
+  title: Pokemon API
+paths:
+  "/api/pokemons":
+    get:
+      summary: Retrieves all pokemons
+      tags:
+        - Pokemons
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: filter by status
+      responses:
+        '200':
+          description: All pokemons
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/arrayOfPokemons"
+  "/api/pokemons/{id}":
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Pokemon ID
+    get:
+      summary: Retrieves a pokemon
+      tags:
+        - Pokemons
+      responses:
+        '200':
+          description: Pokemon found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/pokemon"
+  "/api/combats":
+    get:
+      summary: Retrieves all combats
+      tags:
+        - Combats
+      responses:
+        '200':
+          description: Combats found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/arrayOfCombats"
+    post:
+      summary: Simulates a fight between two pokemons
+      tags:
+        - Combats
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                attacker_id:
+                  type: integer
+                opponent_id:
+                  type: integer
+      responses:
+        '201':
+          description: Simulation created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/combat"
+
+servers:
+  - url: http://{defaultHost}:3000
+    variables:
+      defaultHost:
+        default: localhost
+
+components:
+  schemas:
+    arrayOfPokemons:
+      type: array
+      items:
+        $ref: '#/components/schemas/pokemon'
+    pokemon:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: 'Bulbasaur'
+        type:
+          type: string
+          example: 'Grass'
+        hp:
+          type: integer
+          example: '100'
+        attacks:
+          type: array
+          items:
+            type: string
+            example: "Vine Whip, Tackle, Seed Bomb"
+        status:
+          type: string
+          example: 'available'
+    combat:
+      type: object
+      properties:
+        id:
+          type: integer
+        winner_id:
+          type: integer
+        xp_gain:
+          type: integer
+        attacker_actions:
+          $ref: "#/components/schemas/arrayOfActions"
+        opponent_actions:
+          $ref: "#/components/schemas/arrayOfActions"
+    action:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: 'charge'
+        damage:
+          type: integer
+
+    arrayOfCombats:
+      type: array
+      items:
+        $ref: '#/components/schemas/combat'
+    arrayOfActions:
+      type: array
+      items:
+        $ref: '#/components/schemas/action'
