@@ -19,21 +19,21 @@ Each pokemon has a list of battle moves, a type, hp, and attack (you can add mor
 
 ### You should at a minimum: 
 
-[] Have a route that sends all available pokemons
+[ ] Have a route that sends all available pokemons
 
-[] A route to display a pokemon
+[ ] A route to display a pokemon
 
-[] A route to simulate combats between two pokemons
+[ ] A route to simulate combats between two pokemons
 
-[] A route to get all combats (id, pokemons involved and winner) 
+[ ] A route to get all combats (id, pokemons involved and winner) 
 
 
 ### For the combats we should
-[] have a play by play of the combat - moves used (can be random) and health jumps of the pokemons
+[ ] have a play by play of the combat - moves used (can be random) and health jumps of the pokemons
 
-[] a winner
+[ ] a winner
 
-[] xp gains for the winning pokemon
+[ ] xp gains for the winning pokemon
 
 
 
