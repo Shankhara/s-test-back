@@ -100,14 +100,13 @@ components:
         hp:
           type: integer
           example: '100'
-        attacks:
+        moves:
           type: array
           items:
             type: string
             example: "Vine Whip, Tackle, Seed Bomb"
-        status:
-          type: string
-          example: 'available'
+        available:
+          type: boolean
     combat:
       type: object
       properties:

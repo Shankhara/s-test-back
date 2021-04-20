@@ -5,8 +5,8 @@ class CreatePokemons < ActiveRecord::Migration[6.1]
     create_table :pokemons do |t|
       t.string :name
       t.string :p_type
+      t.integer :exp, default: 0
       t.integer :hp
-      t.integer :moves, array: true, default: []
       t.boolean :available, default: true
       t.timestamps
     end

@@ -4,7 +4,11 @@ FactoryBot.define do
   factory :pokemon do
     name { Faker::Games::Pokemon.name }
     p_type { %w[Fire Water Grass Electric Psychic].sample }
+    exp { rand(0..100) }
     hp { rand(60..150) }
-    moves { Faker::Games::Pokemon.sample(name, 3) }
+    transient { nb_moves { 3 } }
+    after(:create) do |pokemon, evaluator|
+      create_list(:move, evaluator.nb_moves, pokemon: pokemon)
+    end
   end
 end

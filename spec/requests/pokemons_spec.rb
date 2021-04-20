@@ -6,7 +6,7 @@ RSpec.describe '/pokemons', type: :request do
   before { create_list(:pokemon, 3) }
   describe 'GET /index' do
     it 'renders a successful response' do
-      get pokemons_url
+      get api_v1_pokemons_url
       expect(status).to eq 200
       expect(json.size).to eq 3
     end
@@ -14,7 +14,7 @@ RSpec.describe '/pokemons', type: :request do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      get pokemon_url(Pokemon.first.id)
+      get api_v1_pokemon_url(Pokemon.first.id)
       expect(status).to eq 200
       expect(json['name']).to eq Pokemon.first.name
     end
