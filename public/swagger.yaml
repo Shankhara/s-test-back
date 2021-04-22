@@ -3,7 +3,7 @@ info:
   version: v1
   title: Pokemon API
 paths:
-  "/api/pokemons":
+  "/api/v1/pokemons":
     get:
       summary: Retrieves all pokemons
       tags:
@@ -21,7 +21,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/arrayOfPokemons"
-  "/api/pokemons/{id}":
+  "/api/v1/pokemons/{id}":
     parameters:
       - name: id
         in: path
@@ -40,7 +40,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pokemon"
-  "/api/combats":
+  "/api/v1/combats":
     get:
       summary: Retrieves all combats
       tags:
@@ -94,7 +94,7 @@ components:
         name:
           type: string
           example: 'Bulbasaur'
-        type:
+        p_type:
           type: string
           example: 'Grass'
         hp:
@@ -103,8 +103,14 @@ components:
         moves:
           type: array
           items:
-            type: string
-            example: "Vine Whip, Tackle, Seed Bomb"
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              damage:
+                type: integer
         available:
           type: boolean
     combat:
@@ -116,19 +122,26 @@ components:
           type: integer
         xp_gain:
           type: integer
-        attacker_actions:
-          $ref: "#/components/schemas/arrayOfActions"
-        opponent_actions:
+        attacker_id:
+          type: integer
+        attacker_name:
+          type: string
+        opponent_id:
+          type: integer
+        opponent_name:
+          type: string
+        actions:
           $ref: "#/components/schemas/arrayOfActions"
     action:
       type: object
       properties:
         id:
           type: integer
-        name:
+        pokemon_name:
           type: string
-          example: 'charge'
-        damage:
+        move_name:
+          type: string
+        move_damage:
           type: integer
 
     arrayOfCombats:

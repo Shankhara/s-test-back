@@ -18,5 +18,11 @@ RSpec.describe '/pokemons', type: :request do
       expect(status).to eq 200
       expect(json['name']).to eq Pokemon.first.name
     end
+    context 'render error' do
+      it 'when not found', test: true do
+        get api_v1_pokemon_url(876)
+        expect(json['error']).to eq ["Couldn't find Pokemon with 'id'=876"]
+      end
+    end
   end
 end

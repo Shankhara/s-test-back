@@ -37,6 +37,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'rubocop-rspec'
 end
 
 group :development do

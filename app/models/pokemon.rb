@@ -5,7 +5,7 @@ class Pokemon < ApplicationRecord
   validates :p_type, presence: true
   validates :hp, presence: true, numericality: true
   validates :exp, presence: true, numericality: true
-  validates :available, presence: true, inclusion: [true, false]
+  validates :available, inclusion: [true, false]
   has_many :moves, dependent: :destroy
   has_many :combats, dependent: :nullify
 end

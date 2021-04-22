@@ -14,4 +14,12 @@ class Combat < ApplicationRecord
   def compute_xp_gain
     self.xp_gain = attacker.exp + opponent.exp
   end
+
+  def attacker_actions
+    actions.where(pokemon_id: attacker_id)
+  end
+
+  def opponent_actions
+    actions.where(pokemon_id: opponent_id)
+  end
 end

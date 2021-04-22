@@ -2,4 +2,5 @@
 
 class PokemonSerializer < ActiveModel::Serializer
   attributes :id, :name, :p_type, :hp, :moves, :available
+  has_many :moves
 end

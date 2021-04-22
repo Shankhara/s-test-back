@@ -3,7 +3,7 @@
 module Api
   module V1
     class PokemonsController < ApplicationController
-      before_action :set_pokemon, only: %i[show]
+      before_action :set_pokemon, only: :show
 
       def index
         pokemons = Pokemon.all
