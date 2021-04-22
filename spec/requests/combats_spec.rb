@@ -5,27 +5,21 @@ require 'rails_helper'
 RSpec.describe '/combats', type: :request do
   describe 'GET /index' do
     it 'renders a successful response' do
-      Combat.create! valid_attributes
-      get combats_url, headers: valid_headers, as: :json
-      expect(response).to be_successful
+      create_list(:combat, 2)
+      get api_v1_combats_url
+      expect(json.size).to eq 2
+      expect(status).to eq 200
     end
   end
-
   describe 'POST /create' do
-    context 'with valid parameters' do
-      it 'creates a new Combat' do
-        expect do
-          post combats_url,
-               params: { combat: valid_attributes }, headers: valid_headers, as: :json
-        end.to change(Combat, :count).by(1)
-      end
-
-      it 'renders a JSON response with the new combat' do
-        post combats_url,
-             params: { combat: valid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including('application/json'))
-      end
+    it 'simulates a combat', test: true do
+      pokemons = create_list(:pokemon, 2)
+      post api_v1_combats_url, params: { attacker_id: pokemons[0].id, opponent_id: pokemons[1].id }
+      expect(Combat.count).to eq 1
+      expect(json['attacker_id']).to eq pokemons[0].id
+      expect(json['opponent_id']).to eq pokemons[1].id
+      expect(json['xp_gain']).to eq(pokemons[0].exp + pokemons[1].exp)
+      # expect(json['winner_id']).to be_instance_of Pokemon
     end
   end
 end

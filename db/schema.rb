@@ -13,12 +13,12 @@
 ActiveRecord::Schema.define(version: 2021_04_20_172206) do
 
   create_table "actions", force: :cascade do |t|
-    t.integer "combats_id"
+    t.integer "combat_id"
     t.integer "pokemon_id"
     t.integer "move_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["combats_id"], name: "index_actions_on_combats_id"
+    t.index ["combat_id"], name: "index_actions_on_combat_id"
     t.index ["move_id"], name: "index_actions_on_move_id"
     t.index ["pokemon_id"], name: "index_actions_on_pokemon_id"
   end
@@ -47,13 +47,13 @@ ActiveRecord::Schema.define(version: 2021_04_20_172206) do
     t.string "name"
     t.string "p_type"
     t.integer "exp", default: 0
-    t.integer "hp"
+    t.integer "hp", default: 100
     t.boolean "available", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "actions", "combats", column: "combats_id"
+  add_foreign_key "actions", "combats"
   add_foreign_key "actions", "moves"
   add_foreign_key "actions", "pokemons"
   add_foreign_key "combats", "pokemons", column: "attacker_id"

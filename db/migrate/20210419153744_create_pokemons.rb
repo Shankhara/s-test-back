@@ -6,7 +6,7 @@ class CreatePokemons < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :p_type
       t.integer :exp, default: 0
-      t.integer :hp
+      t.integer :hp, default: 100
       t.boolean :available, default: true
       t.timestamps
     end
