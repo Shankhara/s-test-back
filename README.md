@@ -19,24 +19,24 @@ Each pokemon has a list of battle moves, a type, hp, and attack (you can add mor
 
 ### You should at a minimum: 
 
-[ ] Have a route that sends all available pokemons
+[X] Have a route that sends all available pokemons
 
-[ ] A route to display a pokemon
+[X] A route to display a pokemon
 
-[ ] A route to simulate combats between two pokemons
+[X] A route to simulate combats between two pokemons
 
-[ ] A route to get all combats (id, pokemons involved and winner) 
+[X] A route to get all combats (id, pokemons involved and winner) 
 
 
 ### For the combats we should
-[ ] have a play by play of the combat - moves used (can be random) and health jumps of the pokemons
+[X] have a play by play of the combat - moves used (can be random) and health jumps of the pokemons
 
-[ ] a winner
+[X] a winner
 
-[ ] xp gains for the winning pokemon
+[X] xp gains for the winning pokemon
 
 
 
-You can use this api https://pokeapi.co/docs/v2#pokemon-section to seed your data, but it is not mandatory. 
+[X] You can use this api https://pokeapi.co/docs/v2#pokemon-section to seed your data, but it is not mandatory. 
 
 You will have to make choices to what and how you implement things. These choices are as important as your code.
