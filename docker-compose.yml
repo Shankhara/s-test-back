@@ -1,0 +1,29 @@
+version: '3.0'
+
+services:
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+  pg:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: secure
+  rails:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pokemon_api
+    volumes:
+      - ./PokemonApi/:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - pg
+      - redis
+    environment:
+      PG_PASSWORD: secure 
+      PG_USER: postgres
+      PG_HOST: postgres
