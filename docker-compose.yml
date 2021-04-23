@@ -3,11 +3,12 @@ version: '3.0'
 services:
 
   redis:
+    container_name: redis_pokemon_api
     image: "redis:alpine"
     ports:
       - "6379:6379"
   pg:
-    container_name: postgres
+    container_name: postgres_pokemon_api
     image: postgres
     environment:
       POSTGRES_PASSWORD: secure
@@ -26,4 +27,4 @@ services:
     environment:
       PG_PASSWORD: secure 
       PG_USER: postgres
-      PG_HOST: postgres
+      PG_HOST: postgres_pokemon_api
