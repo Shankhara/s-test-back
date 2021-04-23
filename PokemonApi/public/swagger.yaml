@@ -10,10 +10,12 @@ paths:
         - Pokemons
       parameters:
         - in: query
-          name: status
+          name: available
           schema:
             type: string
-          description: filter by status
+            format: boolean
+            example: true
+          description: filter by availability
       responses:
         '200':
           description: All pokemons
@@ -54,9 +56,11 @@ paths:
                 $ref: "#/components/schemas/arrayOfCombats"
     post:
       summary: Simulates a fight between two pokemons
+      description: Fill in two pokemons IDs and a fight will be simulated
       tags:
         - Combats
       requestBody:
+        description: Fill in two pokemons IDs and a fight will be simulated. The attacker attacks first with one of his moves. The fight is over when one's got HP under zero. The winner earns the experience of its opponent. When a pokemon has HP < 0, he turns unavailable and can't fight anymore.
         content:
           application/json:
             schema:

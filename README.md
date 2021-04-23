@@ -3,8 +3,8 @@
 ### Run: 
 `docker-compose up --build`
 
-### Run commands inside the container :
-`docker exec -ti pokemon_api <cmd>`
+### Tests:
+`docker exec -ti pokemon_api rspec`
 
 ### OpenAPI Documentation
 https://localhost:3000/api-docs

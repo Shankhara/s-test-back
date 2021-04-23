@@ -6,7 +6,7 @@ module Api
       before_action :set_pokemon, only: :show
 
       def index
-        pokemons = Pokemon.all
+        pokemons = params[:available].present? ? Pokemon.find_by(available: params[:available]) : Pokemon.all
         json_response(pokemons, 200)
       end
 
